@@ -38,3 +38,17 @@
     </div>
   </section>
 </div>
+<script>
+    var likeBTN = $("#send_like");
+    likeBTN.click(function () {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          data=JSON.parse(this.response);
+          console.log(data);
+          $("#like").html(data.like);
+        }
+      };
+      xhttp.open("GET", "/movie/like?movieId="+{{movie.getId()}}+"&categoryId="+{{movie.getCategoryId()}});
+      xhttp.send();
+    });
