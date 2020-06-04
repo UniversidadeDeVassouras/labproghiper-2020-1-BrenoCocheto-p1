@@ -1,0 +1,43 @@
+{%extends 'base.html'%} {%block body%}
+<div class="column">
+  <input
+    class="form-control form-control-sm ml-3 w-75"
+    type="text"
+    placeholder="Pesquisar"
+    onkeyup="searchMovie(this.value)"
+  />
+  <div id="resultSearch"></div>
+  <div class="row" id="movieSearchList"></div>
+  <div style="margin-top: 5%;">
+    <div class="wrapper">
+      {%for i in movie[:3]%}
+      <div class="card" style="margin: auto;">
+        <img src="/static/src{{i.getThumb()}}" />
+        <div class="descriptions">
+          <h1>{{i.getName()}}</h1>
+          <h3>{{i.getDescription()}}</h3>
+
+          <button style="width: 100%;">
+            <div class="wrapper">
+              <a href="/movie/{{i.getCategoryId()}}/{{i.getId()}}"
+                >Play
+                <svg
+                  class="bi bi-caret-right-fill"
+                  width="50%"
+                  height="50%"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"
+                  /></svg
+              ></a>
+            </div>
+          </button>
+        </div>
+      </div>
+      {%endfor%}
+    </div>
+  </div>
+</div>
