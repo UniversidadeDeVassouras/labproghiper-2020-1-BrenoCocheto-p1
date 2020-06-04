@@ -1,0 +1,30 @@
+{%extends 'base.html'%} {%block body%}
+<div class="row">
+  <div class="wrapper"></div>
+   <div style="padding-left: 40%; padding-right: 40%;">
+    <h1>{{category.getName()}}</h1>
+    <h3>{{category.getDescription()}}</h3>
+   </div>
+    
+</div>
+</div>
+<div class="row">
+  <div style="margin-top: 10%;">
+    <div class="box">
+      {%for i in movie%}
+      <div class="card2">
+        <div class="imgBx">
+          <a href="/movie/{{i.getCategoryId()}}/{{i.getId()}}">
+            <img src="/static/src{{i.getThumb()}}" alt="images" />
+          </a>
+        </div>
+        <div class="details">
+          <h2>{{i.getName()}}<br /><span>{{i.getDescription()}}</span></h2>
+        </div>
+      </div>
+      {%endfor%}
+    </div>
+  </div>
+</div>
+
+  {%endblock%}
