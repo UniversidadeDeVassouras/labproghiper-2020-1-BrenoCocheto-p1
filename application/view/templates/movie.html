@@ -52,3 +52,28 @@
       xhttp.open("GET", "/movie/like?movieId="+{{movie.getId()}}+"&categoryId="+{{movie.getCategoryId()}});
       xhttp.send();
     });
+
+    var commentBTN = $("#send_comment");
+  commentBTN.click(function () {
+   var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function(){
+     if(this.readyState == 4 && this.status == 200){
+       data=JSON.parse(this.response);
+       console.log(data);
+      $("#comments").append(
+        '   <div class="container"style="background-color: white; width: 200px;" ">\
+        <div class="grid-layout">\
+          <div class="grid-item grid-item-1">' +
+          data +
+          "</div>\
+        </div>\
+      </div>"
+      );
+      $('#comment').val('')
+     }
+   };
+   xhttp.open("GET", "/movie/comment?movieId="+{{movie.getId()}}+"&comment="+$("input#comment").val());
+   xhttp.send();
+  });
+</script>
+{%endblock%}
