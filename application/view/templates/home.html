@@ -41,3 +41,53 @@
     </div>
   </div>
 </div>
+<script>
+  var searchMovie = function (text) {
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        data = this.response;
+        data = JSON.parse(data);
+        console.log(data);
+        if (text == "") {
+          $("#movieSearchList").html("");
+          document.getElementById("resultSearch").innerHTML = "";
+          return false;
+        }
+        if (data.length > 0) {
+          document.getElementById("resultSearch").innerHTML =
+            '<span class="alert alert-success">' +
+            data.length +
+            " resultados encontrados</span>";
+          document.getElementById("movieSearchList").innerHTML = "";
+          for (let i = 0; i < data.length; i++) {
+            const movie = data[i];
+            $("#movieSearchList").append(
+              '<div class="col-md-6"><div class="card">\
+                <div class="card-title">' +
+                movie._name +
+                '</div>\
+                <div class="card-body">' +
+                movie._description +
+                '\
+                  <a href="/movie/' +
+                movie._categoryId +
+                '/"><img src="static/src/' +
+                movie._thumbnail +
+                '"></a></div>\
+              </div></div>"'
+            );
+          }
+        } else {
+          document.getElementById("resultSearch").innerHTML =
+            '<span class="alert alert-danger">Nenhum resultado encontrado</span>"';
+          $("#movieSearchList").html("");
+        }
+      }
+    };
+    xhttp.open("GET", "/movies/search?search=" + text, true);
+    xhttp.send();
+  };
+</script>
+{%endblock%}
