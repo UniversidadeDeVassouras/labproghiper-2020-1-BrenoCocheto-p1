@@ -3,39 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- importando fontes do google -->
     <link
       href="https://fonts.googleapis.com/css?family=Oswald:300"
       rel="stylesheet"
       type="text/css"
     />
+    <!-- importando bootstrap.css -->
     <link
       href="{{url_for('static', filename='/css/bootstrap.css')}}"
       rel="stylesheet"
     />
+    <!-- importando css personalizado -->
     <link href="{{url_for('static', filename="/css/style.css")}}"
     rel="stylesheet"/>
+    <!--  importando icones fontawewsome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <!-- importando jquery -->
     <script src="{{url_for('static', filename='/js/jquery-3.5.1.min.js')}}"></script>
+    <!-- importando bootstrap.js -->
     <script src="{{url_for('static', filename='/js/bootstrap.js')}}"></script>
   </head>
-
+  <!-- inicio do body -->
   <body>
+    <!-- inicio do head -->
     <header>
       <div class="wrap">
+        <!-- inicio navbar -->
         <nav>
           <ul class="primary">
+            <!-- caminho para home -->
             <li>
               <a href="{{url_for('home')}}">Home</a>
             </li>
-
+            <!-- caminho para categorias -->
             <li>
               <a href="">Categorias</a>
               <ul class="sub">
+                <!-- gera lista de categorias na navbar -->
                 {%for i in categories%}
                 <li>
+                  <!-- pega o caminho que está no controller com o id da categoria -->
                   <a href="/category/{{ i.getId() }}">{{i.getName()}}</a>
                 </li>
                 {%endfor%}
@@ -43,15 +54,20 @@
             </li>
           </ul>
         </nav>
+        <!-- fim da navbar -->
       </div>
+      <!-- fim do header -->
     </header>
-
+    <!-- bloco das páginas (não sei como explicar isso ao certo em um comentário) -->
     {% block body %}{% endblock %}
-
+    <!-- fim do bloco das páginas -->
+    <!-- inicio do footer -->
     <footer class="fixed-bottom page-footer font-small">
       <div class="footer-copyright text-center py-3">
         Breno Cocheto © 2020 Copyright:
       </div>
     </footer>
+    <!-- fim do footer -->
   </body>
+  <!-- fim do body -->
 </html>
