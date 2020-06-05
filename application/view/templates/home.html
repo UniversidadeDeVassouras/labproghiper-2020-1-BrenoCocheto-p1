@@ -1,4 +1,6 @@
+<!-- inicio do bloco -->
 {%extends 'base.html'%} {%block body%}
+<!-- caixa de pesquisa -->
 <div class="column">
   <input
     class="form-control form-control-sm ml-3 w-75"
@@ -6,6 +8,7 @@
     placeholder="Pesquisar"
     onkeyup="searchMovie(this.value)"
   />
+  <!-- lista de resultados -->
   <div id="resultSearch"></div>
   <div class="row" id="movieSearchList"></div>
   <div style="margin-top: 5%;">
@@ -16,8 +19,8 @@
         <div class="descriptions">
           <h1>{{i.getName()}}</h1>
           <h3>{{i.getDescription()}}</h3>
-
           <button style="width: 100%;">
+            <!-- listta de videos mais curtidos -->
             <div class="wrapper">
               <a href="/movie/{{i.getCategoryId()}}/{{i.getId()}}"
                 >Play
@@ -41,6 +44,7 @@
     </div>
   </div>
 </div>
+<!-- inicio do script de busca -->
 <script>
   var searchMovie = function (text) {
     var xhttp = new XMLHttpRequest();
@@ -91,3 +95,4 @@
   };
 </script>
 {%endblock%}
+<!-- fim do bloco -->
