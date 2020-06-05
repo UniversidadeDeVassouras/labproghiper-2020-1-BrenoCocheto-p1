@@ -1,13 +1,15 @@
+<!-- inicio do bloco -->
 {%extends 'base.html'%} {%block body%}
+<!-- titulo com nome e descrição da categoria -->
 <div class="row">
   <div class="wrapper"></div>
    <div style="padding-left: 40%; padding-right: 40%;">
     <h1>{{category.getName()}}</h1>
     <h3>{{category.getDescription()}}</h3>
    </div>
-    
 </div>
 </div>
+<!-- lista com as categorias -->
 <div class="row">
   <div style="margin-top: 10%;">
     <div class="box">
@@ -28,3 +30,4 @@
 </div>
 
   {%endblock%}
+<!-- fim do bloco -->
