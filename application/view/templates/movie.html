@@ -1,10 +1,12 @@
+<!-- inicio do bloco -->
 {%extends 'base.html'%} {%block body%}
-
+<!-- exibe video -->
 <div class="wrapper">
   <section style="padding-left: 10%; padding-right: 10%;">
     <video width="720" height="440" controls>
       <source src="/static/src/{{movie.getPath()}}" type="video/mp4" />
     </video>
+    <!-- input de comentário -->
     <div class="container" style="margin: 10%;">
       <div class="container_item">
         <input
@@ -13,9 +15,11 @@
           class="form_field"
           placeholder="Digite um comentário."
         />
+        <!-- envia comentários -->
         <button id="send_comment" type="button" class="btn btn-primary">
           Enviar
         </button>
+        <!-- curte vídeo -->
         <button class="btn2" id="send_like">
           <i class="fa fa-heart"></i> Curtir <a id="like"></a>
         </button>
@@ -23,22 +27,23 @@
     </div>
   </section>
   <section>
+    <!-- exibe comentários -->
     <div style="padding: 10%;">
       <div id="comments">
         {%for i in comments%}
-
         <div class="container" style="background-color: white; width: 200px;">
           <div class="grid-layout">
             <div>{{i.getComment()}}</div>
           </div>
         </div>
-
         {%endfor%}
       </div>
     </div>
   </section>
 </div>
+<!-- inicio dos scripts -->
 <script>
+  // script do botão curtir
     var likeBTN = $("#send_like");
     likeBTN.click(function () {
       var xhttp = new XMLHttpRequest();
@@ -52,7 +57,7 @@
       xhttp.open("GET", "/movie/like?movieId="+{{movie.getId()}}+"&categoryId="+{{movie.getCategoryId()}});
       xhttp.send();
     });
-
+    // script dos comentários (botão, input e lista)
     var commentBTN = $("#send_comment");
   commentBTN.click(function () {
    var xhttp = new XMLHttpRequest();
@@ -77,3 +82,4 @@
   });
 </script>
 {%endblock%}
+<!-- fim do bloco -->
