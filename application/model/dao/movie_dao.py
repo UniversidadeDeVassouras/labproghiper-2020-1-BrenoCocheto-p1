@@ -1,10 +1,14 @@
 from application.model.entity.movie_entity import Movie
 from flask import current_app
 
+# define a classe onde serão armazenados os videos
+
 
 class Movie_DAO:
     def __init__(self):
+        # inicia uma lista vazia onde serão armazenados os videos
         self._movies = []
+        # adiciona vídeos
         self._movies.append(
             Movie(
                 1,
@@ -124,9 +128,11 @@ class Movie_DAO:
                 0,
             )
         )
+# retorna lista de videos
 
     def getMovies(self):
         return self._movies
+# retorna o video pelo id
 
     def getMoviesById(self, id, moviesList):
         movie = None
@@ -135,8 +141,10 @@ class Movie_DAO:
                 movie = item
                 return movie
         return movie
+# retorna o vídeo com maior quantidade de curtidas
 
-    def getMoviesMostViews(self):
+    def getMoviesMostLikes(self):
         movies = current_app.config["movie"]
-        most = sorted(movies.getMovies(), key=lambda x: x.getLike(), reverse=True)
+        most = sorted(movies.getMovies(),
+                      key=lambda x: x.getLike(), reverse=True)
         return most

@@ -9,7 +9,7 @@ import json
 def home():
     categories = current_app.config["categories"].getListCategory()
     movies = current_app.config["movie"]
-    movie = movies.getMoviesMostViews()
+    movie = movies.getMoviesMostLiked()
 
     return render_template("home.html", categories=categories, movie=movie,)
 
